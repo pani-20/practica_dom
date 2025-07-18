@@ -95,7 +95,7 @@ const productos = [
     oldPrice: 29.9,
     discount: 20,
     image:
-      'https://tienda-onepiece.com/wp-content/uploads/2024/09/gorra-luffy-gear-4.jpg',
+      'https://cloud.superfan.art/pc3dw/gen/lab/001-000044-00001-5a09ef0183ebc6199d42dd9651099c53/ven/1000w/VI2-00266-00101_94286_negro.webp?15',
     url: 'https://tienda-onepiece.com/products/gorra-luffy-gear-4/'
   },
   {
@@ -106,7 +106,7 @@ const productos = [
     oldPrice: 9.9,
     discount: 15,
     image:
-      'https://tienda-onepiece.com/wp-content/uploads/2024/09/llavero-zoro.jpg',
+      'https://tienda-onepiece.com/wp-content/uploads/2024/09/llavero-zoro.webp',
     url: 'https://tienda-onepiece.com/products/llavero-zoro/'
   }
 ]
@@ -121,11 +121,17 @@ filtersSection.innerHTML = `
 const productsSection = document.getElementById('products')
 function renderProducts(productList) {
   productsSection.innerHTML = ''
+  if (productList.length === 0) {
+    productsSection.innerHTML = `<p class="no-results">No se encontraron productos para tu búsqueda.</p>`
+    return
+  }
   productList.forEach((product) => {
     const card = document.createElement('article')
     card.className = 'product-card'
     card.innerHTML = `
-      <img src="${product.image}" alt="${product.name}" />
+      <img src="${product.image}" alt="${
+      product.name
+    }" onerror="this.onerror=null;this.src='https://via.placeholder.com/200x200?text=Imagen+no+disponible';" />
       <div class="product-name">${product.name}</div>
       <div class="product-seller">${product.seller}</div>
       <div>
